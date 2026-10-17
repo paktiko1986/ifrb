@@ -1,0 +1,20 @@
+<button id="show-notification-btn">Show notification</button>
+<script>
+navigator.serviceWorker.register('sw.js');
+document.getElementById('show-notification-btn').onclick = function() {
+    Notification.requestPermission(function(result) {
+        // result = 'allowed' / 'denied' / 'default'
+        if (result !== 'denied') {
+            navigator.serviceWorker.ready.then(function(registration) {
+                // Show notification. If the user clicks on this
+                // notification, then "notificationclick" is fired.
+                registration.showNotification('Test');
+                alert('Thanks. alert');
+                console.log("Boom! console");
+                confirm("what; confirm")
+                prompt("oke; prompting")
+            });
+        }
+    });
+}
+</script>
